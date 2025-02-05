@@ -18,7 +18,7 @@ public class WordSearchWithProducerConsumer {
     private static List<List<WordOutput>> ans = Collections.synchronizedList(new ArrayList<>());
     private static List<WordOutput> locationOfWord = Collections.synchronizedList(new ArrayList<>());
 
-    static class Producer extends Thread {
+    static class Producer implements Runnable {
         private File folder;
 
         public Producer(File folder) {
@@ -35,13 +35,17 @@ public class WordSearchWithProducerConsumer {
                     fileList.add(file.getAbsolutePath());
                     queue.put(file.getAbsolutePath());
                 }
+                for (int i = 0; i < 9; i++) {
+                    queue.put("STOP");
+                }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                System.err.println("Producer interrupted");
             }
         }
     }
 
-    static class Consumer extends Thread {
+    static class Consumer implements Runnable {
         private String word;
 
         public Consumer(String word) {
@@ -53,22 +57,24 @@ public class WordSearchWithProducerConsumer {
             try {
                 WordLinePosAndOccurrences wordSearch = new WordLinePosAndOccurrences();
                 while (true) {
-                    String filePath = queue.poll(1, TimeUnit.SECONDS);
-                    if (filePath == null) {
+                    String filePath = queue.take();
+                    if ("STOP".equals(filePath)) {
+                        queue.put("STOP");
                         break;
                     }
                     WordInput input = new WordInput(filePath, word);
                     ans.add(wordSearch.getOccurrences(input));
                     locationOfWord.add(wordSearch.getLinesAndPostionsOfWord(input));
                 }
-            } catch (Exception e) {
+            } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                System.err.println("Consumer interrupted");
             }
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
-        File folder = new File("/home/karthikr_700073/Downloads/Karthik/temp.txt");
+        File folder = new File("/home/karthikr_700073/Downloads/Karthik");
         String word = "the";
 
         ExecutorService service = Executors.newFixedThreadPool(10);
