@@ -13,8 +13,10 @@ public class SynchronizationAllTypes {
         setSum(getSum() + 1);
     }
 
-    public static synchronized void counter() {
-        setCnt(getCnt() + 1);
+    public static void counter() {
+        synchronized (SynchronizationAllTypes.class) {
+            setCnt(getCnt() + 1);
+        }
     }
 
     public void listAdder() {
