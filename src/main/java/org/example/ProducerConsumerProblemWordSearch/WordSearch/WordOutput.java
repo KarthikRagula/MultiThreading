@@ -1,4 +1,4 @@
-package org.example.WordSearch;
+package org.example.ProducerConsumerProblemWordSearch.WordSearch;
 
 import java.util.List;
 import java.util.Map;

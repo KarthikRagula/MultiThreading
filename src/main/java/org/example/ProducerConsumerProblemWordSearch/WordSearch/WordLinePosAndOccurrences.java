@@ -1,4 +1,4 @@
-package org.example.WordSearch;
+package org.example.ProducerConsumerProblemWordSearch.WordSearch;
 
 import java.io.*;
 import java.util.ArrayList;

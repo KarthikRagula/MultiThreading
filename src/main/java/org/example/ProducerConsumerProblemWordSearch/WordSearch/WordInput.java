@@ -1,4 +1,4 @@
-package org.example.WordSearch;
+package org.example.ProducerConsumerProblemWordSearch.WordSearch;
 
 public class WordInput {
     private String path;
