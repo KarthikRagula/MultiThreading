@@ -15,5 +15,6 @@ public class FixedThreadPool {
             executor1.execute(new Task());
         }
         executor.shutdown();
+        executor1.shutdown();
     }
 }
