@@ -25,8 +25,8 @@ public class Producer implements Runnable {
             WordInput input = new WordInput(folder.getAbsolutePath());
             List<WordOutput> listOfFiles = fileObj.getListOfFiles(input);
             for (WordOutput file : listOfFiles) {
-                fileList.add(file.getAbsolutePath());
-                queue.put(file.getAbsolutePath());
+                fileList.add(file.getFile());
+                queue.put(file.getFile());
             }
             for (int i = 0; i < 9; i++) {
                 queue.put("STOP");

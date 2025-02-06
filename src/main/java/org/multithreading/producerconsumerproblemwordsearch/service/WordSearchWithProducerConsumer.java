@@ -1,9 +1,6 @@
 package org.multithreading.producerconsumerproblemwordsearch.service;
 
-import org.multithreading.producerconsumerproblemwordsearch.models.Consumer;
-import org.multithreading.producerconsumerproblemwordsearch.models.Producer;
-import org.multithreading.producerconsumerproblemwordsearch.models.WordOutput;
-import org.multithreading.producerconsumerproblemwordsearch.models.WordSearchResult;
+import org.multithreading.producerconsumerproblemwordsearch.models.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -47,11 +44,12 @@ public class WordSearchWithProducerConsumer {
         }
         System.out.println();
         for (WordSearchResult list : locationOfWord) {
-            List<WordOutput> finalOutput = list.getLineNumberAndPos();
+            List<LineNumberAndPos> finalOutput = list.getLineNumberAndPos();
             System.out.println(list.getAbsolutePath());
-            for(WordOutput out:finalOutput){
+            for(LineNumberAndPos out:finalOutput){
                 System.out.print(out.getLineNumber()+" "+out.getPos());
             }
+            System.out.println();
         }
     }
 }

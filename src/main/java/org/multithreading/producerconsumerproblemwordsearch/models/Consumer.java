@@ -31,7 +31,7 @@ public class Consumer implements Runnable {
                 }
                 WordInput input = new WordInput(filePath, word);
                 ans.add(wordSearch.getOccurrences(input));
-//                locationOfWord.add(wordSearch.getLinesAndPostionsOfWord(input));
+                locationOfWord.add(wordSearch.getLinesAndPostionsOfWord(input));
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

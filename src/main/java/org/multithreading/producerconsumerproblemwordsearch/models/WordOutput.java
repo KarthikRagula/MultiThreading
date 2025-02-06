@@ -10,10 +10,10 @@ public class WordOutput {
     private String line;
     private String absolutePath;
     private List<WordOutput> lines;
-    private Map<String, List<WordOutput>> finalOutput;
+    private String file;
 
-    public WordOutput(Map<String, List<WordOutput>> finalOutput) {
-        this.finalOutput = finalOutput;
+    public String getFile() {
+        return file;
     }
 
     public WordOutput(int lineNumber, String line) {
@@ -26,31 +26,18 @@ public class WordOutput {
         this.occurred = occurred;
     }
 
-    public WordOutput(int lineNumber, List<Integer> pos) {
-        this.lineNumber = lineNumber;
-        this.pos = pos;
-    }
-
     public WordOutput(int occured) {
         this.occurred = occured;
     }
 
-    public WordOutput(String absolutePath, List<WordOutput> lines) {
-        this.absolutePath = absolutePath;
-        this.lines = lines;
+    public WordOutput(String file) {
+        this.file = file;
     }
 
     public int getOccurred() {
         return occurred;
     }
 
-    public int getLineNumber() {
-        return lineNumber;
-    }
-
-    public List<Integer> getPos() {
-        return pos;
-    }
 
     public String getLine() {
         return line;
@@ -62,9 +49,5 @@ public class WordOutput {
 
     public List<WordOutput> getLines() {
         return lines;
-    }
-
-    public Map<String, List<WordOutput>> getFinalOutput() {
-        return finalOutput;
     }
 }
