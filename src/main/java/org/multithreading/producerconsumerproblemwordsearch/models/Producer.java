@@ -1,5 +1,6 @@
 package org.multithreading.producerconsumerproblemwordsearch.models;
 
+import org.multithreading.producerconsumerproblemwordsearch.service.FileUtils;
 import org.multithreading.producerconsumerproblemwordsearch.service.WordLinePosAndOccurrences;
 
 import java.io.File;
@@ -20,9 +21,9 @@ public class Producer implements Runnable {
     @Override
     public void run() {
         try {
-            WordLinePosAndOccurrences wordSearch = new WordLinePosAndOccurrences();
+            FileUtils fileObj=new FileUtils();
             WordInput input = new WordInput(folder.getAbsolutePath(), null);
-            List<WordOutput> listOfFiles = wordSearch.getListOfFiles(input);
+            List<WordOutput> listOfFiles = fileObj.getListOfFiles(input);
             for (WordOutput file : listOfFiles) {
                 fileList.add(file.getAbsolutePath());
                 queue.put(file.getAbsolutePath());
