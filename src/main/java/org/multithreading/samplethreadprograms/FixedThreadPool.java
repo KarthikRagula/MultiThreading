@@ -1,4 +1,4 @@
-package org.example;
+package org.multithreading.samplethreadprograms;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 class Task implements Runnable {

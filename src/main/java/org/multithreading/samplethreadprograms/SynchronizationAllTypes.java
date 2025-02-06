@@ -1,4 +1,4 @@
-package org.example;
+package org.multithreading.samplethreadprograms;
 
 import java.util.ArrayList;
 import java.util.List;

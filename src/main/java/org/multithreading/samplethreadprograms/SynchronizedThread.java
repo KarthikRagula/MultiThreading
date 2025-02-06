@@ -1,4 +1,4 @@
-package org.example;
+package org.multithreading.samplethreadprograms;
 
 class Counter {
     private int counter = 0;

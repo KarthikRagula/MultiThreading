@@ -1,4 +1,4 @@
-package org.example;
+package org.multithreading.samplethreadprograms;
 
 public class SampleThreadUsingExtends extends Thread{
     @Override

@@ -1,6 +1,8 @@
-package org.example.ProducerConsumerProblemWordSearch;
+package org.multithreading.producerconsumerproblemwordsearch.service;
 
-import org.example.ProducerConsumerProblemWordSearch.WordSearch.WordOutput;
+import org.multithreading.producerconsumerproblemwordsearch.models.Consumer;
+import org.multithreading.producerconsumerproblemwordsearch.models.Producer;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordOutput;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,15 +22,20 @@ public class WordSearchWithProducerConsumer {
         List<WordOutput> locationOfWord = new ArrayList<>();
 
         Producer producer = new Producer(folder, queue, fileList);
-        ExecutorService service = Executors.newFixedThreadPool(10);
-        service.submit(producer);
+        Thread producerThread = new Thread(producer);
+        producerThread.start();
+
+        Thread[] consumerThreads = new Thread[9];
 
         for (int i = 0; i < 9; i++) {
-            service.submit(new Consumer(word, queue, ans, locationOfWord));
+            consumerThreads[i] = new Thread(new Consumer(word, queue, ans, locationOfWord));
+            consumerThreads[i].start();
         }
+        producerThread.join();
 
-        service.shutdown();
-        service.awaitTermination(10, TimeUnit.SECONDS);
+        for (Thread thread : consumerThreads) {
+            thread.join();
+        }
 
         System.out.println("List of all files: " + fileList);
 

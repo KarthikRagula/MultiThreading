@@ -1,4 +1,4 @@
-package org.example.ProducerConsumerProblemWordSearch.WordSearch;
+package org.multithreading.producerconsumerproblemwordsearch.models;
 
 import java.util.List;
 import java.util.Map;

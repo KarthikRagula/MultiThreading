@@ -1,4 +1,4 @@
-package org.example.ProducerConsumerProblemWordSearch.WordSearch;
+package org.multithreading.producerconsumerproblemwordsearch.models;
 
 public class WordInput {
     private String path;

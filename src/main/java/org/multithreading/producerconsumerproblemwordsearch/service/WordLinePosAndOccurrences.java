@@ -1,4 +1,7 @@
-package org.example.ProducerConsumerProblemWordSearch.WordSearch;
+package org.multithreading.producerconsumerproblemwordsearch.service;
+
+import org.multithreading.producerconsumerproblemwordsearch.models.WordInput;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordOutput;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,8 +1,6 @@
-package org.example.ProducerConsumerProblemWordSearch;
+package org.multithreading.producerconsumerproblemwordsearch.models;
 
-import org.example.ProducerConsumerProblemWordSearch.WordSearch.WordInput;
-import org.example.ProducerConsumerProblemWordSearch.WordSearch.WordLinePosAndOccurrences;
-import org.example.ProducerConsumerProblemWordSearch.WordSearch.WordOutput;
+import org.multithreading.producerconsumerproblemwordsearch.service.WordLinePosAndOccurrences;
 
 import java.io.File;
 import java.util.List;
