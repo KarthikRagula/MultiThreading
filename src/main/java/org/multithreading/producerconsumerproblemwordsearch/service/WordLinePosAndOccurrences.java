@@ -28,7 +28,7 @@ public class WordLinePosAndOccurrences {
                     index = st.indexOf(in.getWord(), index + 1);
                 }
                 if (!li.isEmpty()) {
-                    lineNumberAndPos.add(new WordOutput(st, lines.get(j).getLineNumber(), li));
+                    lineNumberAndPos.add(new WordOutput(j, li));
                 }
             }
             finalOutput.put(listOfFiles.get(i).getAbsolutePath(), lineNumberAndPos);

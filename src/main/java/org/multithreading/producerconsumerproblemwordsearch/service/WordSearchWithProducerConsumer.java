@@ -50,7 +50,7 @@ public class WordSearchWithProducerConsumer {
             for (Map.Entry<String, List<WordOutput>> map : finalOutput.entrySet()) {
                 System.out.println(map.getKey());
                 for (WordOutput locPos : map.getValue()) {
-                    System.out.println(locPos.getLine() + " " + locPos.getPos());
+                    System.out.println(locPos.getLineNumber()+ " " + locPos.getPos());
                 }
                 System.out.println();
             }

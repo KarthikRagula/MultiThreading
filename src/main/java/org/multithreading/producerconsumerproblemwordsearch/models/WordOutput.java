@@ -26,8 +26,7 @@ public class WordOutput {
         this.occurred = occurred;
     }
 
-    public WordOutput(String line, int lineNumber, List<Integer> pos) {
-        this.line = line;
+    public WordOutput(int lineNumber, List<Integer> pos) {
         this.lineNumber = lineNumber;
         this.pos = pos;
     }
