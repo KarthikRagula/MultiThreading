@@ -9,6 +9,11 @@ public class WordInput {
         this.word = word;
     }
 
+    public WordInput(String path) {
+        this.path = path;
+    }
+
+
     public String getPath() {
         return path;
     }

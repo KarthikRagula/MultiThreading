@@ -22,7 +22,7 @@ public class Producer implements Runnable {
     public void run() {
         try {
             FileUtils fileObj=new FileUtils();
-            WordInput input = new WordInput(folder.getAbsolutePath(), null);
+            WordInput input = new WordInput(folder.getAbsolutePath());
             List<WordOutput> listOfFiles = fileObj.getListOfFiles(input);
             for (WordOutput file : listOfFiles) {
                 fileList.add(file.getAbsolutePath());
