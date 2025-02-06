@@ -3,6 +3,7 @@ package org.multithreading.producerconsumerproblemwordsearch.service;
 import org.multithreading.producerconsumerproblemwordsearch.models.Consumer;
 import org.multithreading.producerconsumerproblemwordsearch.models.Producer;
 import org.multithreading.producerconsumerproblemwordsearch.models.WordOutput;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordSearchResult;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class WordSearchWithProducerConsumer {
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
         List<String> fileList = new ArrayList<>();
         List<List<WordOutput>> ans = new ArrayList<>();
-        List<WordOutput> locationOfWord = new ArrayList<>();
+        List<WordSearchResult> locationOfWord = new ArrayList<>();
 
         Producer producer = new Producer(folder, queue, fileList);
         Thread producerThread = new Thread(producer);
@@ -45,14 +46,11 @@ public class WordSearchWithProducerConsumer {
             }
         }
         System.out.println();
-        for (WordOutput list : locationOfWord) {
-            Map<String, List<WordOutput>> finalOutput = list.getFinalOutput();
-            for (Map.Entry<String, List<WordOutput>> map : finalOutput.entrySet()) {
-                System.out.println(map.getKey());
-                for (WordOutput locPos : map.getValue()) {
-                    System.out.println(locPos.getLineNumber()+ " " + locPos.getPos());
-                }
-                System.out.println();
+        for (WordSearchResult list : locationOfWord) {
+            List<WordOutput> finalOutput = list.getLineNumberAndPos();
+            System.out.println(list.getAbsolutePath());
+            for(WordOutput out:finalOutput){
+                System.out.print(out.getLineNumber()+" "+out.getPos());
             }
         }
     }

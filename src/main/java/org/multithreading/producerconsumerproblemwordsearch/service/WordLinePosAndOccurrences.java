@@ -2,6 +2,7 @@ package org.multithreading.producerconsumerproblemwordsearch.service;
 
 import org.multithreading.producerconsumerproblemwordsearch.models.WordInput;
 import org.multithreading.producerconsumerproblemwordsearch.models.WordOutput;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordSearchResult;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,9 +14,9 @@ public class WordLinePosAndOccurrences {
 
     FileUtils file=new FileUtils();
     //input = path and word
-    public WordOutput getLinesAndPostionsOfWord(WordInput in) {
+    public List<WordSearchResult> getLinesAndPostionsOfWord(WordInput in) {
         List<WordOutput> listOfFiles = file.getListOfFiles(in);
-        Map<String, List<WordOutput>> finalOutput = new HashMap<>();
+        List<WordSearchResult> finalOutput = new ArrayList<>();
         for (int i = 0; i < listOfFiles.size(); i++) {
             List<WordOutput> lines = listOfFiles.get(i).getLines();
             List<WordOutput> lineNumberAndPos = new ArrayList<>();
@@ -31,25 +32,24 @@ public class WordLinePosAndOccurrences {
                     lineNumberAndPos.add(new WordOutput(j, li));
                 }
             }
-            finalOutput.put(listOfFiles.get(i).getAbsolutePath(), lineNumberAndPos);
+            finalOutput.add(new WordSearchResult(listOfFiles.get(i).getAbsolutePath(), lineNumberAndPos));
         }
-        //output =map of(string, list of (line, linenumber and list of (postions)))
-        return new WordOutput(finalOutput);
+        //output =list (string, list of ( linenumber and list of (postions)))
+        return finalOutput;
     }
 
     //input == path and word
     public List<WordOutput> getOccurrences(WordInput in) {
-        WordOutput output = getLinesAndPostionsOfWord(in);
-        Map<String, List<WordOutput>> finalOutput = output.getFinalOutput();
+        List<WordSearchResult> output = getLinesAndPostionsOfWord(in);
         List<WordOutput> occurredList = new ArrayList<>();
         int occurred = 0;
-        for (Map.Entry<String, List<WordOutput>> map : finalOutput.entrySet()) {
-            List<WordOutput> list = map.getValue();
+        for(WordSearchResult out:output) {
+            List<WordOutput> list=out.getLineNumberAndPos();
             occurred = 0;
             for (int i = 0; i < list.size(); i++) {
                 occurred += list.get(i).getPos().size();
             }
-            occurredList.add(new WordOutput(map.getKey(), occurred));
+            occurredList.add(new WordOutput(out.getAbsolutePath(), occurred));
         }
         return occurredList;
     }

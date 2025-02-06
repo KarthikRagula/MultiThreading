@@ -10,9 +10,9 @@ public class Consumer implements Runnable {
     private String word;
     private BlockingQueue<String> queue;
     private List<List<WordOutput>> ans;
-    private List<WordOutput> locationOfWord;
+    private List<WordSearchResult> locationOfWord;
 
-    public Consumer(String word, BlockingQueue<String> queue, List<List<WordOutput>> ans, List<WordOutput> locationOfWord) {
+    public Consumer(String word, BlockingQueue<String> queue, List<List<WordOutput>> ans, List<WordSearchResult> locationOfWord) {
         this.word = word;
         this.queue = queue;
         this.ans = ans;
@@ -31,7 +31,7 @@ public class Consumer implements Runnable {
                 }
                 WordInput input = new WordInput(filePath, word);
                 ans.add(wordSearch.getOccurrences(input));
-                locationOfWord.add(wordSearch.getLinesAndPostionsOfWord(input));
+//                locationOfWord.add(wordSearch.getLinesAndPostionsOfWord(input));
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
