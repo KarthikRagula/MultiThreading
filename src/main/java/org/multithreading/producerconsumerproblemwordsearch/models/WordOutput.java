@@ -6,10 +6,7 @@ import java.util.Map;
 public class WordOutput {
     private int occurred;
     private int lineNumber;
-    private List<Integer> pos;
     private String line;
-    private String absolutePath;
-    private List<WordOutput> lines;
     private String file;
 
     public String getFile() {
@@ -21,13 +18,9 @@ public class WordOutput {
         this.line = line;
     }
 
-    public WordOutput(String absolutePath, int occurred) {
-        this.absolutePath = absolutePath;
+    public WordOutput(String file, int occurred) {
+        this.file = file;
         this.occurred = occurred;
-    }
-
-    public WordOutput(int occured) {
-        this.occurred = occured;
     }
 
     public WordOutput(String file) {
@@ -38,16 +31,7 @@ public class WordOutput {
         return occurred;
     }
 
-
     public String getLine() {
         return line;
-    }
-
-    public String getAbsolutePath() {
-        return absolutePath;
-    }
-
-    public List<WordOutput> getLines() {
-        return lines;
     }
 }

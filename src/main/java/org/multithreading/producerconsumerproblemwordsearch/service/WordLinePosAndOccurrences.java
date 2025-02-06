@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public class WordLinePosAndOccurrences {
-
     FileUtils file = new FileUtils();
 
     //input = path and word
@@ -32,43 +31,40 @@ public class WordLinePosAndOccurrences {
                 lineNumberAndPos.add(new LineNumberAndPos(j, li));
             }
         }
-        return new WordSearchResult(in.getPath(), lineNumberAndPos);
         //output =list (string, list of ( linenumber and list of (postions)
+        return new WordSearchResult(in.getPath(), lineNumberAndPos);
     }
 
     //input == path and word
-    public List<WordOutput> getOccurrences(WordInput in) {
+    public WordOutput getOccurrences(WordInput in) {
         WordSearchResult output = getLinesAndPostionsOfWord(in);
-        List<WordOutput> occurredList = new ArrayList<>();
         int occurred = 0;
         List<LineNumberAndPos> list = output.getLineNumberAndPos();
-        occurred = 0;
         for (int i = 0; i < list.size(); i++) {
             occurred += list.get(i).getPos().size();
         }
-        occurredList.add(new WordOutput(output.getAbsolutePath(), occurred));
-        return occurredList;
-}
-
-private List<WordOutput> getLines(WordInput in) {
-    List<WordOutput> lines = new ArrayList<>();
-    try {
-        File f0 = new File(in.getPath());
-        if (!f0.exists()) {
-            throw new FileNotFoundException("File not found");
-        }
-        BufferedReader bf = new BufferedReader(new FileReader(in.getPath()));
-        String line;
-        int lineNumber = 1;
-        while ((line = bf.readLine()) != null) {
-            lines.add(new WordOutput(lineNumber++, line));
-        }
-    } catch (FileNotFoundException fe) {
-        System.out.println(fe.getMessage());
-    } catch (IOException e) {
-        throw new RuntimeException(e);
+        return new WordOutput(output.getAbsolutePath(), occurred);
     }
-    //output = line number and line
-    return lines;
-}
+
+    private List<WordOutput> getLines(WordInput in) {
+        List<WordOutput> lines = new ArrayList<>();
+        try {
+            File f0 = new File(in.getPath());
+            if (!f0.exists()) {
+                throw new FileNotFoundException("File not found");
+            }
+            BufferedReader bf = new BufferedReader(new FileReader(in.getPath()));
+            String line;
+            int lineNumber = 1;
+            while ((line = bf.readLine()) != null) {
+                lines.add(new WordOutput(lineNumber++, line));
+            }
+        } catch (FileNotFoundException fe) {
+            System.out.println(fe.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //output = line number and line
+        return lines;
+    }
 }

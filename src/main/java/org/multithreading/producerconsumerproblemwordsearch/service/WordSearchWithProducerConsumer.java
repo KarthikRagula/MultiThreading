@@ -16,7 +16,7 @@ public class WordSearchWithProducerConsumer {
 
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
         List<String> fileList = new ArrayList<>();
-        List<List<WordOutput>> ans = new ArrayList<>();
+        List<WordOutput> ans = new ArrayList<>();
         List<WordSearchResult> locationOfWord = new ArrayList<>();
 
         Producer producer = new Producer(folder, queue, fileList);
@@ -37,17 +37,16 @@ public class WordSearchWithProducerConsumer {
 
         System.out.println("List of all files: " + fileList);
 
-        for (List<WordOutput> occurrences : ans) {
-            for (WordOutput output : occurrences) {
-                System.out.println(output.getAbsolutePath() + " " + output.getOccurred());
-            }
+        for (WordOutput occurrences : ans) {
+            System.out.println(occurrences.getFile() + " " + occurrences.getOccurred());
         }
+
         System.out.println();
         for (WordSearchResult list : locationOfWord) {
             List<LineNumberAndPos> finalOutput = list.getLineNumberAndPos();
             System.out.println(list.getAbsolutePath());
-            for(LineNumberAndPos out:finalOutput){
-                System.out.print(out.getLineNumber()+" "+out.getPos());
+            for (LineNumberAndPos out : finalOutput) {
+                System.out.println(out.getLineNumber() + " " + out.getPos());
             }
             System.out.println();
         }
