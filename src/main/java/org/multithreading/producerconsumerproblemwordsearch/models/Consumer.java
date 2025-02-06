@@ -9,10 +9,10 @@ import java.util.concurrent.BlockingQueue;
 public class Consumer implements Runnable {
     private String word;
     private BlockingQueue<String> queue;
-    private List<WordOutput> ans;
+    private List<WordOccured> ans;
     private List<WordSearchResult> locationOfWord;
 
-    public Consumer(String word, BlockingQueue<String> queue, List<WordOutput> ans, List<WordSearchResult> locationOfWord) {
+    public Consumer(String word, BlockingQueue<String> queue, List<WordOccured> ans, List<WordSearchResult> locationOfWord) {
         this.word = word;
         this.queue = queue;
         this.ans = ans;

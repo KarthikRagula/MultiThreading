@@ -5,9 +5,9 @@ import java.util.List;
 public class WordSearchResult {
 
     private String absolutePath;
-    private List<LineNumberAndPos> lineNumberAndPos;
+    private List<WordLineNumberAndPos> lineNumberAndPos;
 
-    public WordSearchResult(String absolutePath, List<LineNumberAndPos> lineNumberAndPos) {
+    public WordSearchResult(String absolutePath, List<WordLineNumberAndPos> lineNumberAndPos) {
         this.absolutePath = absolutePath;
         this.lineNumberAndPos = lineNumberAndPos;
     }
@@ -16,7 +16,7 @@ public class WordSearchResult {
         return absolutePath;
     }
 
-    public List<LineNumberAndPos> getLineNumberAndPos() {
+    public List<WordLineNumberAndPos> getLineNumberAndPos() {
         return lineNumberAndPos;
     }
 }

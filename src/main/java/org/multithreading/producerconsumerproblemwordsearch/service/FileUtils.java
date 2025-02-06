@@ -1,7 +1,7 @@
 package org.multithreading.producerconsumerproblemwordsearch.service;
 
 import org.multithreading.producerconsumerproblemwordsearch.models.WordInput;
-import org.multithreading.producerconsumerproblemwordsearch.models.WordOutput;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordOccured;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ public class FileUtils {
 
 
     //input = path and word
-    public List<WordOutput> getListOfFiles(WordInput in) {
-        List<WordOutput> filePaths = new ArrayList<>();
+    public List<WordOccured> getListOfFiles(WordInput in) {
+        List<WordOccured> filePaths = new ArrayList<>();
         try {
             File filePath = new File(in.getPath());
             if (!filePath.exists()) {
@@ -22,7 +22,7 @@ public class FileUtils {
             if (filePath.isDirectory()) {
                 listFilesRecursive(filePath, filePaths);
             } else if (filePath.isFile()) {
-                filePaths.add(new WordOutput(filePath.getAbsolutePath()));
+                filePaths.add(new WordOccured(filePath.getAbsolutePath()));
             } else {
                 throw new RuntimeException("The provided path is neither a file nor a directory");
             }
@@ -34,7 +34,7 @@ public class FileUtils {
         return filePaths;
     }
 
-    private void listFilesRecursive(File directory, List<WordOutput> filePaths) {
+    private void listFilesRecursive(File directory, List<WordOccured> filePaths) {
         File[] filesAndDirs = directory.listFiles();
         if (filesAndDirs == null) {
             return;
@@ -43,7 +43,7 @@ public class FileUtils {
             if (file.isDirectory()) {
                 listFilesRecursive(file, filePaths);
             } else {
-                filePaths.add(new WordOutput(file.getAbsolutePath()));
+                filePaths.add(new WordOccured(file.getAbsolutePath()));
             }
         }
     }

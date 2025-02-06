@@ -5,7 +5,6 @@ import org.multithreading.producerconsumerproblemwordsearch.models.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.*;
 
 public class WordSearchWithProducerConsumer {
@@ -16,7 +15,7 @@ public class WordSearchWithProducerConsumer {
 
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
         List<String> fileList = new ArrayList<>();
-        List<WordOutput> ans = new ArrayList<>();
+        List<WordOccured> ans = new ArrayList<>();
         List<WordSearchResult> locationOfWord = new ArrayList<>();
 
         Producer producer = new Producer(folder, queue, fileList);
@@ -37,15 +36,15 @@ public class WordSearchWithProducerConsumer {
 
         System.out.println("List of all files: " + fileList);
 
-        for (WordOutput occurrences : ans) {
+        for (WordOccured occurrences : ans) {
             System.out.println(occurrences.getFile() + " " + occurrences.getOccurred());
         }
 
         System.out.println();
         for (WordSearchResult list : locationOfWord) {
-            List<LineNumberAndPos> finalOutput = list.getLineNumberAndPos();
+            List<WordLineNumberAndPos> finalOutput = list.getLineNumberAndPos();
             System.out.println(list.getAbsolutePath());
-            for (LineNumberAndPos out : finalOutput) {
+            for (WordLineNumberAndPos out : finalOutput) {
                 System.out.println(out.getLineNumber() + " " + out.getPos());
             }
             System.out.println();

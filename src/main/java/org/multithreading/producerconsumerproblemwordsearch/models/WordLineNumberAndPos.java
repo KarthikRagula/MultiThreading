@@ -2,11 +2,11 @@ package org.multithreading.producerconsumerproblemwordsearch.models;
 
 import java.util.List;
 
-public class LineNumberAndPos {
+public class WordLineNumberAndPos {
     private int lineNumber;
     private List<Integer> pos;
 
-    public LineNumberAndPos(int lineNumber, List<Integer> pos) {
+    public WordLineNumberAndPos(int lineNumber, List<Integer> pos) {
         this.lineNumber = lineNumber;
         this.pos = pos;
     }
