@@ -4,6 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.multithreading.producerconsumerproblemwordsearch.models.*;
 
+import org.multithreading.producerconsumerproblemwordsearch.models.Producer;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordLineNumberAndPos;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordOccured;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordSearchResult;
+
+import java.io.File;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -22,6 +28,7 @@ public class WordSearchWithProducerConsumer {
 
         File folder = new File("/home/karthikr_700073/Downloads/Karthik");
         String word = "the";
+        int numberOfConsumers = 5;
         int[] consumerCounts = {1, 2, 4, 8, 16, 32};
         File outputFile = new File("output.txt");
 
