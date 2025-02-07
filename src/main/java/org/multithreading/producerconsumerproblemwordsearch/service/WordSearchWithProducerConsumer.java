@@ -11,7 +11,6 @@ import org.multithreading.producerconsumerproblemwordsearch.models.WordSearchRes
 
 import java.io.File;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ public class WordSearchWithProducerConsumer {
 
         File folder = new File("/home/karthikr_700073/Downloads/Karthik");
         String word = "the";
-        int numberOfConsumers = 5;
         int[] consumerCounts = {1, 2, 4, 8, 16, 32};
         File outputFile = new File("output.txt");
 
