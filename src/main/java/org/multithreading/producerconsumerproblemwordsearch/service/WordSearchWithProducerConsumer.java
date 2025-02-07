@@ -1,17 +1,28 @@
 package org.multithreading.producerconsumerproblemwordsearch.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.multithreading.producerconsumerproblemwordsearch.models.*;
 
-import java.io.*;
+import org.multithreading.producerconsumerproblemwordsearch.models.Producer;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordLineNumberAndPos;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordOccured;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordSearchResult;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class WordSearchWithProducerConsumer {
+    private static final Logger logger = LoggerFactory.getLogger(WordSearchWithProducerConsumer.class);
+
     public static void main(String[] args) throws InterruptedException {
 
         File folder = new File("/home/karthikr_700073/Downloads/Karthik");
         String word = "the";
+        int numberOfConsumers = 5;
 
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
         List<String> fileList = new ArrayList<>();
@@ -21,24 +32,24 @@ public class WordSearchWithProducerConsumer {
         Producer producer = new Producer(folder, queue, fileList);
         Thread producerThread = new Thread(producer);
         producerThread.start();
+        logger.info("Producer Thread Started");
 
-        Thread[] consumerThreads = new Thread[9];
+        Thread[] consumerThreads = new Thread[numberOfConsumers];
 
-        for (int i = 0; i < 9; i++) {
-            consumerThreads[i] = new Thread(new Consumer(word, queue, ans, locationOfWord));
+        for (int i = 0; i < numberOfConsumers; i++) {
+            consumerThreads[i] = new Thread(new Consumer(word, queue, ans, locationOfWord, producer));
             consumerThreads[i].start();
         }
+        logger.info( "consumer Threads Started");
         producerThread.join();
+        logger.info( "producing the files from the folder is completed");
 
         for (Thread thread : consumerThreads) {
             thread.join();
         }
+        logger.info( "consumer thereads are done");
 
         System.out.println("List of all files: " + fileList);
-
-        for (WordOccured occurrences : ans) {
-            System.out.println(occurrences.getFile() + " " + occurrences.getOccurred());
-        }
 
         System.out.println();
         for (WordSearchResult list : locationOfWord) {
