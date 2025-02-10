@@ -1,45 +1,26 @@
 package org.multithreading.producerconsumerproblemwordsearch.models;
 
+import javax.sound.sampled.Line;
 import java.util.List;
 
 public class WordLineNumberAndPos {
-    private int lineNumber;
-    private List<Integer> pos;
+    private List<LineAndPos> lineAndPos;
     private String absolutePath;
-    private List<WordLineNumberAndPos> lineNumberAndPos;
-    private String file;
 
-    public WordLineNumberAndPos(String file) {
-        this.file = file;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public WordLineNumberAndPos(String absolutePath, List<WordLineNumberAndPos> lineNumberAndPos) {
+    public WordLineNumberAndPos(String absolutePath, List<LineAndPos> lineAndPos) {
+        this.lineAndPos = lineAndPos;
         this.absolutePath = absolutePath;
-        this.lineNumberAndPos = lineNumberAndPos;
+    }
+
+    public List<LineAndPos> getLineAndPos() {
+        return lineAndPos;
+    }
+
+    public WordLineNumberAndPos(String absolutePath) {
+        this.absolutePath = absolutePath;
     }
 
     public String getAbsolutePath() {
         return absolutePath;
-    }
-
-    public List<WordLineNumberAndPos> getLineNumberAndPos() {
-        return lineNumberAndPos;
-    }
-
-    public WordLineNumberAndPos(int lineNumber, List<Integer> pos) {
-        this.lineNumber = lineNumber;
-        this.pos = pos;
-    }
-
-    public int getLineNumber() {
-        return lineNumber;
-    }
-
-    public List<Integer> getPos() {
-        return pos;
     }
 }

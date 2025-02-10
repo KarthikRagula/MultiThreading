@@ -1,13 +1,11 @@
 package org.multithreading.producerconsumerproblemwordsearch.models;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.multithreading.producerconsumerproblemwordsearch.service.WordLinePosAndOccurrences;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
-
 
 public class Consumer implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(Consumer.class);

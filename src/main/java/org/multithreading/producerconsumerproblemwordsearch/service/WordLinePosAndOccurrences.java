@@ -1,5 +1,6 @@
 package org.multithreading.producerconsumerproblemwordsearch.service;
 
+import org.multithreading.producerconsumerproblemwordsearch.models.LineAndPos;
 import org.multithreading.producerconsumerproblemwordsearch.models.WordLineNumberAndPos;
 import org.multithreading.producerconsumerproblemwordsearch.models.WordInput;
 
@@ -12,7 +13,7 @@ public class WordLinePosAndOccurrences {
 
     //input = path and word
     public WordLineNumberAndPos getLinesAndPostionsOfWord(WordInput in) {
-        List<WordLineNumberAndPos> lineNumberAndPos = new ArrayList<>();
+        List<LineAndPos> lineNumberAndPos = new ArrayList<>();
         try {
             File f0 = new File(in.getPath());
             if (!f0.exists()) {
@@ -30,7 +31,7 @@ public class WordLinePosAndOccurrences {
                     index = st.indexOf(in.getWord(), index + 1);
                 }
                 if (!li.isEmpty()) {
-                    lineNumberAndPos.add(new WordLineNumberAndPos(lineNumber, li));
+                    lineNumberAndPos.add(new LineAndPos(lineNumber, li));
                 }
             }
         } catch (FileNotFoundException fe) {

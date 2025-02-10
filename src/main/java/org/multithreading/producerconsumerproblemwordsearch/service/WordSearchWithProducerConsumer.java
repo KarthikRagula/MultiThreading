@@ -7,6 +7,7 @@ import org.multithreading.producerconsumerproblemwordsearch.models.*;
 import org.multithreading.producerconsumerproblemwordsearch.models.Producer;
 import org.multithreading.producerconsumerproblemwordsearch.models.WordLineNumberAndPos;
 
+import javax.sound.sampled.Line;
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -77,10 +78,11 @@ public class WordSearchWithProducerConsumer {
 
             Collections.sort(locationOfWord, Comparator.comparing(WordLineNumberAndPos::getAbsolutePath));
             writer.write("\nWord Positions:\n");
+            result=new WordSearchResult(locationOfWord);
             for (WordLineNumberAndPos list : locationOfWord) {
-                List<WordLineNumberAndPos> finalOutput = list.getLineNumberAndPos();
+                List<LineAndPos> finalOutput = list.getLineAndPos();
                 writer.write(list.getAbsolutePath() + "\n");
-                for (WordLineNumberAndPos out : finalOutput) {
+                for (LineAndPos out : finalOutput) {
                     writer.write(out.getLineNumber() + " " + out.getPos() + "\n");
                 }
                 writer.write("\n");

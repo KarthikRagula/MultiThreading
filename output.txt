@@ -2,7 +2,7 @@ Producer Thread Started
 Consumer Threads Started
 Producing the files from the folder is completed
 Consumer threads are done
-Execution Time with 1 consumers: 63 ms
+Execution Time with 1 consumers: 27 ms
 Producer Thread Started
 Consumer Threads Started
 Producing the files from the folder is completed
@@ -12,22 +12,22 @@ Producer Thread Started
 Consumer Threads Started
 Producing the files from the folder is completed
 Consumer threads are done
-Execution Time with 4 consumers: 11 ms
+Execution Time with 4 consumers: 14 ms
 Producer Thread Started
 Consumer Threads Started
 Producing the files from the folder is completed
 Consumer threads are done
-Execution Time with 8 consumers: 39 ms
+Execution Time with 8 consumers: 27 ms
 Producer Thread Started
 Consumer Threads Started
 Producing the files from the folder is completed
 Consumer threads are done
-Execution Time with 16 consumers: 12 ms
+Execution Time with 16 consumers: 14 ms
 Producer Thread Started
 Consumer Threads Started
 Producing the files from the folder is completed
 Consumer threads are done
-Execution Time with 32 consumers: 37 ms
+Execution Time with 32 consumers: 47 ms
 
 List of all files:
 /home/karthikr_700073/Downloads/Karthik/Kar (10th copy)/sample.txt
