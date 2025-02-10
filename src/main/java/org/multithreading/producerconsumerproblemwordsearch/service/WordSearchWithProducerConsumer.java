@@ -23,18 +23,17 @@ public class WordSearchWithProducerConsumer {
 
     public static void main(String[] args) throws InterruptedException {
 
-        File folder = new File("/home/karthikr_700073/Downloads/Karthik");
+        File folder = new File("/home/karthikr_700073/Downloads/Karthik/");
         String word = "the";
-        int[] consumerCounts = {1, 2, 4, 8, 16, 32};
+        int[] consumerCounts = {2, 4, 8, 16, 32};
         File outputFile = new File("output.txt");
-
-        BlockingQueue<String> queue = new LinkedBlockingQueue<>();
-        List<String> fileList = new ArrayList<>();
-        List<WordSearchResult> locationOfWord = new ArrayList<>();
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
             for (int numberOfConsumers : consumerCounts) {
+                BlockingQueue<String> queue = new LinkedBlockingQueue<>();
+                List<String> fileList = new ArrayList<>();
+                List<WordSearchResult> locationOfWord = new ArrayList<>();
                 long startTime = System.currentTimeMillis();
                 Producer producer = new Producer(folder, queue, fileList);
                 Thread producerThread = new Thread(producer);
@@ -66,24 +65,24 @@ public class WordSearchWithProducerConsumer {
                 long duration = endTime - startTime;
                 logger.info("Execution Time with " + numberOfConsumers + " consumers: " + duration + " ms");
                 writer.write("Execution Time with " + numberOfConsumers + " consumers: " + duration + " ms\n");
-            }
-
-            Collections.sort(fileList);
-            writer.write("\nList of all files:\n");
-            for (String file : fileList) {
-                writer.write(file + "\n");
-            }
-
-            locationOfWord.sort(Comparator.comparing(result -> result.getListOfAllFilesOutput().isEmpty() ? "" : result.getListOfAllFilesOutput().get(0).getAbsolutePath()));
-            writer.write("\nWord Positions:\n");
-            for (WordSearchResult list : locationOfWord) {
-                List<WordLineNumberAndPos> finalOutput = list.getListOfAllFilesOutput();
-                for (WordLineNumberAndPos out : finalOutput) {
-                    writer.write(out.getLineNumber() + " " + out.getPos() + " "+out.getAbsolutePath()+ "\n");
+                Collections.sort(fileList);
+                writer.write("\nList of all files:\n");
+                for (String file : fileList) {
+                    writer.write(file + "\n");
                 }
-                writer.write("\n");
+
+                locationOfWord.sort(Comparator.comparing(result -> result.getListOfAllFilesOutput().isEmpty() ? "" : result.getListOfAllFilesOutput().get(0).getAbsolutePath()));
+                writer.write("\nWord Positions:\n");
+                for (WordSearchResult list : locationOfWord) {
+                    List<WordLineNumberAndPos> finalOutput = list.getListOfAllFilesOutput();
+                    for (WordLineNumberAndPos out : finalOutput) {
+                        writer.write(out.getLineNumber() + " " + out.getPos() + " " + out.getAbsolutePath() + "\n");
+                    }
+                    writer.write("\n");
+                }
+                logger.info("Results successfully written to file: " + outputFile.getAbsolutePath());
             }
-            logger.info("Results successfully written to file: " + outputFile.getAbsolutePath());
+            writer.close();
         } catch (IOException e) {
             logger.error("Error writing to file", e);
         }
