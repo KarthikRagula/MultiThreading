@@ -36,7 +36,7 @@ Producer Thread Started
 Consumer Threads Started
 Producing the files from the folder is completed
 Consumer threads are done
-Execution Time with 8 consumers: 1 ms
+Execution Time with 8 consumers: 0 ms
 
 List of all files:
 /home/karthikr_700073/Downloads/Karthik/Kar/sample.txt
@@ -53,7 +53,7 @@ Producer Thread Started
 Consumer Threads Started
 Producing the files from the folder is completed
 Consumer threads are done
-Execution Time with 16 consumers: 9 ms
+Execution Time with 16 consumers: 5 ms
 
 List of all files:
 /home/karthikr_700073/Downloads/Karthik/Kar/sample.txt
@@ -70,7 +70,7 @@ Producer Thread Started
 Consumer Threads Started
 Producing the files from the folder is completed
 Consumer threads are done
-Execution Time with 32 consumers: 2 ms
+Execution Time with 32 consumers: 5 ms
 
 List of all files:
 /home/karthikr_700073/Downloads/Karthik/Kar/sample.txt
