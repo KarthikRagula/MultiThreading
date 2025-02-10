@@ -41,15 +41,4 @@ public class WordLinePosAndOccurrences {
         //output =string, list of ( linenumber and list of (postions)
         return new WordLineNumberAndPos(in.getPath(), lineNumberAndPos);
     }
-
-    //input == path and word
-    public WordLineNumberAndPos getOccurrences(WordInput in) {
-        WordLineNumberAndPos output = getLinesAndPostionsOfWord(in);
-        int occurred = 0;
-        List<WordLineNumberAndPos> list = output.getLineNumberAndPos();
-        for (int i = 0; i < list.size(); i++) {
-            occurred += list.get(i).getPos().size();
-        }
-        return new WordLineNumberAndPos(output.getAbsolutePath(), occurred);
-    }
 }

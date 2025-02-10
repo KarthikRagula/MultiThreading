@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
-    //input = file path
-
-
     //input = path and word
     public List<WordLineNumberAndPos> getListOfFiles(WordInput in) {
         List<WordLineNumberAndPos> filePaths = new ArrayList<>();

@@ -30,8 +30,8 @@ public class WordSearchWithProducerConsumer {
 
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
         List<String> fileList = new ArrayList<>();
-        List<WordLineNumberAndPos> ans = new ArrayList<>();
         List<WordLineNumberAndPos> locationOfWord = new ArrayList<>();
+        WordSearchResult result;
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
@@ -46,9 +46,10 @@ public class WordSearchWithProducerConsumer {
                 Thread[] consumerThreads = new Thread[numberOfConsumers];
 
                 for (int i = 0; i < numberOfConsumers; i++) {
-                    consumerThreads[i] = new Thread(new Consumer(word, queue, ans, locationOfWord, producer));
+                    consumerThreads[i] = new Thread(new Consumer(word, queue, locationOfWord, producer));
                     consumerThreads[i].start();
                 }
+
                 logger.info("Consumer Threads Started");
                 writer.write("Consumer Threads Started\n");
 
@@ -72,12 +73,6 @@ public class WordSearchWithProducerConsumer {
             writer.write("\nList of all files:\n");
             for (String file : fileList) {
                 writer.write(file + "\n");
-            }
-
-            Collections.sort(ans, Comparator.comparing(WordLineNumberAndPos::getFile));
-            writer.write("\nWord Occurrences:\n");
-            for (WordLineNumberAndPos occurrences : ans) {
-                writer.write(occurrences.getFile() + " " + occurrences.getOccurred() + "\n");
             }
 
             Collections.sort(locationOfWord, Comparator.comparing(WordLineNumberAndPos::getAbsolutePath));

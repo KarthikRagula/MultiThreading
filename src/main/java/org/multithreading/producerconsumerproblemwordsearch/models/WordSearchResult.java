@@ -4,9 +4,13 @@ import java.util.List;
 
 public class WordSearchResult {
 
-    private List<WordLineNumberAndPos> wordLineNumberAndPos;
+    public List<WordLineNumberAndPos> getListOfAllFilesOutput() {
+        return listOfAllFilesOutput;
+    }
 
-    public WordSearchResult(List<WordLineNumberAndPos> wordLineNumberAndPos) {
-        this.wordLineNumberAndPos = wordLineNumberAndPos;
+    private List<WordLineNumberAndPos> listOfAllFilesOutput;
+
+    public WordSearchResult(List<WordLineNumberAndPos> listOfAllFilesOutput) {
+        this.listOfAllFilesOutput = listOfAllFilesOutput;
     }
 }

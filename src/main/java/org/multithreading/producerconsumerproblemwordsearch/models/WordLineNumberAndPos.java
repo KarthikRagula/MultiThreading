@@ -8,12 +8,6 @@ public class WordLineNumberAndPos {
     private String absolutePath;
     private List<WordLineNumberAndPos> lineNumberAndPos;
     private String file;
-    private int occurred;
-
-    public WordLineNumberAndPos(String file, int occurred) {
-        this.file = file;
-        this.occurred = occurred;
-    }
 
     public WordLineNumberAndPos(String file) {
         this.file = file;
@@ -21,10 +15,6 @@ public class WordLineNumberAndPos {
 
     public String getFile() {
         return file;
-    }
-
-    public int getOccurred() {
-        return occurred;
     }
 
     public WordLineNumberAndPos(String absolutePath, List<WordLineNumberAndPos> lineNumberAndPos) {
@@ -39,7 +29,6 @@ public class WordLineNumberAndPos {
     public List<WordLineNumberAndPos> getLineNumberAndPos() {
         return lineNumberAndPos;
     }
-
 
     public WordLineNumberAndPos(int lineNumber, List<Integer> pos) {
         this.lineNumber = lineNumber;
