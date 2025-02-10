@@ -4,19 +4,9 @@ import java.util.List;
 
 public class WordSearchResult {
 
-    private String absolutePath;
-    private List<WordLineNumberAndPos> lineNumberAndPos;
+    private List<WordLineNumberAndPos> wordLineNumberAndPos;
 
-    public WordSearchResult(String absolutePath, List<WordLineNumberAndPos> lineNumberAndPos) {
-        this.absolutePath = absolutePath;
-        this.lineNumberAndPos = lineNumberAndPos;
-    }
-
-    public String getAbsolutePath() {
-        return absolutePath;
-    }
-
-    public List<WordLineNumberAndPos> getLineNumberAndPos() {
-        return lineNumberAndPos;
+    public WordSearchResult(List<WordLineNumberAndPos> wordLineNumberAndPos) {
+        this.wordLineNumberAndPos = wordLineNumberAndPos;
     }
 }

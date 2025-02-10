@@ -6,8 +6,6 @@ import org.multithreading.producerconsumerproblemwordsearch.models.*;
 
 import org.multithreading.producerconsumerproblemwordsearch.models.Producer;
 import org.multithreading.producerconsumerproblemwordsearch.models.WordLineNumberAndPos;
-import org.multithreading.producerconsumerproblemwordsearch.models.WordOccured;
-import org.multithreading.producerconsumerproblemwordsearch.models.WordSearchResult;
 
 import java.io.File;
 import java.io.BufferedWriter;
@@ -32,8 +30,8 @@ public class WordSearchWithProducerConsumer {
 
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
         List<String> fileList = new ArrayList<>();
-        List<WordOccured> ans = new ArrayList<>();
-        List<WordSearchResult> locationOfWord = new ArrayList<>();
+        List<WordLineNumberAndPos> ans = new ArrayList<>();
+        List<WordLineNumberAndPos> locationOfWord = new ArrayList<>();
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
@@ -76,15 +74,15 @@ public class WordSearchWithProducerConsumer {
                 writer.write(file + "\n");
             }
 
-            Collections.sort(ans, Comparator.comparing(WordOccured::getFile));
+            Collections.sort(ans, Comparator.comparing(WordLineNumberAndPos::getFile));
             writer.write("\nWord Occurrences:\n");
-            for (WordOccured occurrences : ans) {
+            for (WordLineNumberAndPos occurrences : ans) {
                 writer.write(occurrences.getFile() + " " + occurrences.getOccurred() + "\n");
             }
 
-            Collections.sort(locationOfWord, Comparator.comparing(WordSearchResult::getAbsolutePath));
+            Collections.sort(locationOfWord, Comparator.comparing(WordLineNumberAndPos::getAbsolutePath));
             writer.write("\nWord Positions:\n");
-            for (WordSearchResult list : locationOfWord) {
+            for (WordLineNumberAndPos list : locationOfWord) {
                 List<WordLineNumberAndPos> finalOutput = list.getLineNumberAndPos();
                 writer.write(list.getAbsolutePath() + "\n");
                 for (WordLineNumberAndPos out : finalOutput) {

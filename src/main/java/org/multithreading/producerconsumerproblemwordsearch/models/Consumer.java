@@ -13,11 +13,11 @@ public class Consumer implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
     private String word;
     private BlockingQueue<String> queue;
-    private List<WordOccured> ans;
-    private List<WordSearchResult> locationOfWord;
+    private List<WordLineNumberAndPos> ans;
+    private List<WordLineNumberAndPos> locationOfWord;
     private Producer producer;
 
-    public Consumer(String word, BlockingQueue<String> queue, List<WordOccured> ans, List<WordSearchResult> locationOfWord, Producer producer) {
+    public Consumer(String word, BlockingQueue<String> queue, List<WordLineNumberAndPos> ans, List<WordLineNumberAndPos> locationOfWord, Producer producer) {
         this.word = word;
         this.queue = queue;
         this.ans = ans;

@@ -30,8 +30,8 @@ public class Producer implements Runnable {
         try {
             FileUtils fileObj = new FileUtils();
             WordInput input = new WordInput(folder.getAbsolutePath());
-            List<WordOccured> listOfFiles = fileObj.getListOfFiles(input);
-            for (WordOccured file : listOfFiles) {
+            List<WordLineNumberAndPos> listOfFiles = fileObj.getListOfFiles(input);
+            for (WordLineNumberAndPos file : listOfFiles) {
                 fileList.add(file.getFile());
                 queue.put(file.getFile());
             }
