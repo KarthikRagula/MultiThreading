@@ -7,7 +7,6 @@ import org.multithreading.producerconsumerproblemwordsearch.models.*;
 import org.multithreading.producerconsumerproblemwordsearch.models.Producer;
 import org.multithreading.producerconsumerproblemwordsearch.models.WordLineNumberAndPos;
 
-import javax.sound.sampled.Line;
 import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -31,8 +30,7 @@ public class WordSearchWithProducerConsumer {
 
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
         List<String> fileList = new ArrayList<>();
-        List<WordLineNumberAndPos> locationOfWord = new ArrayList<>();
-        WordSearchResult result;
+        List<WordSearchResult> locationOfWord = new ArrayList<>();
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
@@ -76,14 +74,12 @@ public class WordSearchWithProducerConsumer {
                 writer.write(file + "\n");
             }
 
-            Collections.sort(locationOfWord, Comparator.comparing(WordLineNumberAndPos::getAbsolutePath));
+            locationOfWord.sort(Comparator.comparing(result -> result.getListOfAllFilesOutput().isEmpty() ? "" : result.getListOfAllFilesOutput().get(0).getAbsolutePath()));
             writer.write("\nWord Positions:\n");
-            result=new WordSearchResult(locationOfWord);
-            for (WordLineNumberAndPos list : locationOfWord) {
-                List<LineAndPos> finalOutput = list.getLineAndPos();
-                writer.write(list.getAbsolutePath() + "\n");
-                for (LineAndPos out : finalOutput) {
-                    writer.write(out.getLineNumber() + " " + out.getPos() + "\n");
+            for (WordSearchResult list : locationOfWord) {
+                List<WordLineNumberAndPos> finalOutput = list.getListOfAllFilesOutput();
+                for (WordLineNumberAndPos out : finalOutput) {
+                    writer.write(out.getLineNumber() + " " + out.getPos() + " "+out.getAbsolutePath()+ "\n");
                 }
                 writer.write("\n");
             }

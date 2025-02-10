@@ -1,19 +1,16 @@
 package org.multithreading.producerconsumerproblemwordsearch.models;
 
-import javax.sound.sampled.Line;
 import java.util.List;
 
 public class WordLineNumberAndPos {
-    private List<LineAndPos> lineAndPos;
+    private int lineNumber;
+    private List<Integer> pos;
     private String absolutePath;
 
-    public WordLineNumberAndPos(String absolutePath, List<LineAndPos> lineAndPos) {
-        this.lineAndPos = lineAndPos;
+    public WordLineNumberAndPos(int lineNumber, List<Integer> pos, String absolutePath) {
+        this.lineNumber = lineNumber;
+        this.pos = pos;
         this.absolutePath = absolutePath;
-    }
-
-    public List<LineAndPos> getLineAndPos() {
-        return lineAndPos;
     }
 
     public WordLineNumberAndPos(String absolutePath) {
@@ -22,5 +19,13 @@ public class WordLineNumberAndPos {
 
     public String getAbsolutePath() {
         return absolutePath;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
+    }
+
+    public List<Integer> getPos() {
+        return pos;
     }
 }

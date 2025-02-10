@@ -1,8 +1,8 @@
 package org.multithreading.producerconsumerproblemwordsearch.service;
 
-import org.multithreading.producerconsumerproblemwordsearch.models.LineAndPos;
 import org.multithreading.producerconsumerproblemwordsearch.models.WordLineNumberAndPos;
 import org.multithreading.producerconsumerproblemwordsearch.models.WordInput;
+import org.multithreading.producerconsumerproblemwordsearch.models.WordSearchResult;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ public class WordLinePosAndOccurrences {
     FileUtils file = new FileUtils();
 
     //input = path and word
-    public WordLineNumberAndPos getLinesAndPostionsOfWord(WordInput in) {
-        List<LineAndPos> lineNumberAndPos = new ArrayList<>();
+    public WordSearchResult getLinesAndPostionsOfWord(WordInput in) {
+        List<WordLineNumberAndPos> lineNumberAndPos = new ArrayList<>();
         try {
             File f0 = new File(in.getPath());
             if (!f0.exists()) {
@@ -31,7 +31,7 @@ public class WordLinePosAndOccurrences {
                     index = st.indexOf(in.getWord(), index + 1);
                 }
                 if (!li.isEmpty()) {
-                    lineNumberAndPos.add(new LineAndPos(lineNumber, li));
+                    lineNumberAndPos.add(new WordLineNumberAndPos(lineNumber, li, in.getPath()));
                 }
             }
         } catch (FileNotFoundException fe) {
@@ -40,6 +40,6 @@ public class WordLinePosAndOccurrences {
             throw new RuntimeException(e);
         }
         //output =string, list of ( linenumber and list of (postions)
-        return new WordLineNumberAndPos(in.getPath(), lineNumberAndPos);
+        return new WordSearchResult(lineNumberAndPos);
     }
 }
